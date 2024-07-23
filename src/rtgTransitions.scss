@@ -1,0 +1,52 @@
+// RTG Classes
+.fade-appear,
+.fade-appear-active,
+.fade-exit,
+.fade-exit-active,
+.fade-exit-done,
+.fade-enter,
+.fade-enter-active {
+  transition: 0.5s ease-in-out;
+}
+.fade-appear,
+.fade-enter {
+  opacity: 0;
+}
+.fade-appear.fade-appear-active,
+.fade-enter.fade-enter-active {
+  opacity: 1;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit.fade-exit-active,
+.fade-exit-done {
+  opacity: 0;
+}
+
+
+
+.swipe-appear,
+.swipe-appear-active,
+.swipe-exit,
+.swipe-exit-active,
+.swipe-exit-done,
+.swipe-enter,
+.swipe-enter-active {
+  transition: 0.25s ease-in-out;
+}
+.swipe-appear,
+.swipe-enter {
+  transform: translateX(100%);
+}
+.swipe-appear.swipe-appear-active,
+.swipe-enter.swipe-enter-active {
+  transform: translateX(0%);
+}
+.swipe-exit {
+  transform: translateX(0%);
+}
+.swipe-exit.swipe-exit-active,
+.swipe-exit-done {
+  transform: translateX(-100%);
+}
