@@ -289,7 +289,7 @@ function CubeContainer(props: CubeContainerProps): React.ReactElement {
       );
     const UntilText: JSX.Element = sunWidgetLocation ? (
       <motion.div
-      {...animateOpacityValues}
+        {...animateOpacityValues}
         className="full-dims flex-column flex-center"
         id="dawn-dusk-welcome"
         key="front-sun"
@@ -322,9 +322,7 @@ function CubeContainer(props: CubeContainerProps): React.ReactElement {
         </p>
       </motion.div>
     ) : (
-      <p key="until-text">
-        {untilTextContent}
-      </p>
+      <p key="until-text">{untilTextContent}</p>
     );
     const LightText: JSX.Element = (
       <p key="light-text">
@@ -791,6 +789,24 @@ function CubeContainer(props: CubeContainerProps): React.ReactElement {
   };
 
   // AQI Logic
+  const [aqiTiny, setAqiTiny]: [
+    boolean,
+    React.Dispatch<React.SetStateAction<boolean>>
+  ] = useState<boolean>(false);
+  useEffect((): (() => void) => {
+    const aqiEval = (): void => {
+      if (window.innerWidth < 600) {
+        setAqiTiny(true);
+      }
+      else setAqiTiny(false) 
+    };
+    aqiEval();
+    window.addEventListener("resize", aqiEval);
+    return (): void => {
+      window.removeEventListener("resize", aqiEval);
+    };
+  }, []);
+
   const aqiRef: React.RefObject<HTMLDivElement | null> =
     useRef<HTMLDivElement | null>(null);
   const aqiDisplayWidget = (): JSX.Element => {
@@ -814,9 +830,11 @@ function CubeContainer(props: CubeContainerProps): React.ReactElement {
             <span className="all-caps">AQI INDEX :</span>
           </span>{" "}
           <span style={{ fontWeight: 500 }}>{aqi}</span>{" "}
-          <span>
-            <em>{aqiDescriptions[aqi]}</em>{" "}
-          </span>
+          {!aqiTiny && (
+            <span>
+              <em>{aqiDescriptions[aqi]}</em>{" "}
+            </span>
+          )}{" "}
         </p>
 
         <div className="meter" ref={aqiRef as React.RefObject<HTMLDivElement>}>
