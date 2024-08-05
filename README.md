@@ -6,6 +6,8 @@ Full screen weather app: primary weather data retrieved from OpenWeatherAPI. On 
 
 The UI itself is inspired by the GameCube system menu: a cuboid with the capacity to rotate through 3D space. There are nine weather widgets, each of which upon click will rotate the 3D object to an adjacent face displaying further information, usually animated graphs.
 
+All images generated with Midjourney.
+
 ## Widgets
 
 - 1: A wide widget iterates through two displays: the first projects forecast for week ahead, the second shows more detailed information about the current day’s weather. Corresponding face loads graph data for hourly temp / current day and the daily high/low for the coming week.
